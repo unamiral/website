@@ -1,143 +1,68 @@
-/*
-Theme Name: Shmuel Lab Theme
-Theme URI: https://mcgill.ca/neuro/amir-shmuel
-Author: Antigravity
-Description: A premium, dynamic WordPress theme for Dr. Amir Shmuel's Visual Systems Neuroscience & Brain Imaging Signals Lab at McGill University.
-Version: 1.0.0
-Text Domain: shmuel-lab
-*/
-
 /* ==========================================================================
-   CSS Custom Properties (Variables)
+   Shmuel Lab Theme - Standardized CSS Framework
+   Focus: Legibility, Contrast (WCAG 4.5:1), Institutional Branding.
    ========================================================================== */
+
 :root {
-  /* Colors */
-  --mcgill-red: #ED1B2F;
-  --mcgill-red-dark: #A71930;
-  --chili-spice: #961A22;
-  --charcoal: #1E1E1E;
-  --charcoal-light: #2A2A2A;
-  --warm-white: #FAF9F9;
-  --white: #FFFFFF;
-  --grey-light: #F0F0F0;
-  --grey-border: #E5E5E5;
+  --mcgill-red: #ed1b2f;
+  --charcoal: #1a1a1a;
+  --deep-black: #050505;
+  --white: #ffffff;
+  --grey-900: #1a1a1a;
+  --grey-800: #333333;
+  --grey-200: #e0e0e0;
+  --grey-100: #f5f5f5;
   --text-main: #333333;
-  --text-muted: #666666;
-
-  /* Typography */
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
-
-  /* Spacing */
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 4rem;
-  --spacing-xxl: 6rem;
-
-  /* Other */
-  --border-radius: 8px;
-  --transition-speed: 0.3s;
+  --text-muted: #555555;
+  --spacing-unit: 1rem;
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-academic: 'Crimson Pro', Georgia, serif;
+  --border-radius: 4px;
 }
 
-/* ==========================================================================
-   Reset & Base Styles
-   ========================================================================== */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
+/* --- Global Resets & Typography --- */
 body {
+  font-family: var(--font-academic);
+  font-size: 1.125rem;
+  line-height: 1.75; /* Readability standard 1.6-1.8 */
+  color: var(--white);
+  background-color: var(--deep-black);
   margin: 0;
-  padding: 0;
-  font-family: var(--font-body);
-  color: var(--text-main);
-  background-color: var(--warm-white);
-  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, .eyebrow {
   font-family: var(--font-heading);
-  margin-top: 0;
-  margin-bottom: var(--spacing-md);
   font-weight: 700;
-  color: var(--charcoal);
+  color: var(--white); /* Fix: Changed from var(--grey-900) for contrast */
   line-height: 1.2;
 }
 
+/* Eliminate default browser-blue and underlines */
 a {
   color: var(--mcgill-red);
   text-decoration: none;
-  transition: color var(--transition-speed) ease;
+  transition: opacity 0.2s ease;
 }
 
-a:hover {
-  color: var(--chili-spice);
+a:hover, a:focus {
+  opacity: 1;
+  color: var(--white); /* Improved hover visibility */
+  text-decoration: underline;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ==========================================================================
-   Layout & Container
-   ========================================================================== */
 .container {
-  width: 90%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 2rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-lg);
-}
-
-.section {
-  padding: var(--spacing-xl) 0;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-  font-size: 2.5rem;
-  position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background-color: var(--mcgill-red);
-}
-
-/* ==========================================================================
-   Header & Navigation
-   ========================================================================== */
+/* --- Institutional Branding Injection --- */
 .site-header {
-  background-color: var(--white);
-  border-bottom: 1px solid var(--grey-border);
-  padding: var(--spacing-md) 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-bottom: 2px solid var(--grey-800);
+  padding: 1rem 0;
+  background: var(--charcoal);
+  color: var(--white);
 }
 
 .header-inner {
@@ -146,269 +71,692 @@ img {
   align-items: center;
 }
 
-.site-title {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.site-title a {
-  color: var(--charcoal);
-}
-
-.site-title span {
-  color: var(--mcgill-red);
-}
-
-.main-navigation ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: var(--spacing-lg);
-}
-
-.main-navigation a {
-  color: var(--charcoal);
-  font-weight: 600;
-  font-size: 1.1rem;
-  font-family: var(--font-heading);
-  position: relative;
-}
-
-.main-navigation a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: var(--mcgill-red);
-  transition: width var(--transition-speed) ease;
-}
-
-.main-navigation a:hover::after,
-.main-navigation .current-menu-item a::after {
-  width: 100%;
-}
-
-/* ==========================================================================
-   Hero Section
-   ========================================================================== */
-.hero {
-  position: relative;
-  background-color: var(--charcoal);
-  color: var(--white);
-  min-height: 80vh;
+.site-branding {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
+  gap: 3rem;
 }
 
-.hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.3;
-  z-index: 1;
+.institutional-logos {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-right: 1px solid var(--grey-800);
+  padding-right: 2rem;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: var(--spacing-lg);
+.institutional-logos img {
+  height: 35px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  transition: 0.3s ease;
 }
 
-.hero-title {
-  font-size: 4rem;
-  color: var(--white);
-  margin-bottom: var(--spacing-md);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+.logo-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--grey-800);
 }
 
-.hero-subtitle {
-  font-size: 1.5rem;
-  font-family: var(--font-body);
-  font-weight: 300;
-  color: var(--grey-light);
-  margin-bottom: var(--spacing-lg);
+.institutional-logos a:hover img {
+  opacity: 0.7;
 }
 
-.btn {
-  display: inline-block;
-  background-color: var(--mcgill-red);
-  color: var(--white);
-  padding: 12px 30px;
-  border-radius: 30px;
-  font-family: var(--font-heading);
-  font-weight: 600;
+.lab-name {
+  font-size: 1.25rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all var(--transition-speed) ease;
-  border: 2px solid var(--mcgill-red);
+  color: var(--white);
 }
 
-.btn:hover {
-  background-color: transparent;
-  color: var(--mcgill-red);
+/* --- Page Heros --- */
+.page-hero {
+  background: var(--charcoal);
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--grey-800);
+  margin-bottom: 2rem;
 }
 
-/* ==========================================================================
-   Cards (Research, Team, Publications)
-   ========================================================================== */
-.card {
-  background-color: var(--white);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-lg);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+.page-hero.compact-hero {
+  padding: 3rem 0;
+}
+
+.institutional-header-accent {
   border-top: 4px solid var(--mcgill-red);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+/* --- Refactored Horizontal Navigation --- */
+.horizontal-flex {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 2rem;
+  flex-wrap: wrap; /* Prevent overflow on small screens */
 }
 
-.card-title {
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-md);
+/* High contrast utility – ensures WCAG 4.5:1 */
+.high-contrast {
+  color: var(--white) !important;
+  background-color: var(--deep-black) !important;
 }
 
-.card-title a {
-  color: var(--charcoal);
+/* Links focus style for keyboard navigation */
+a:focus {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
 }
 
-.card-title a:hover {
+.primary-menu-list a {
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Video Hero Component --- */
+.video-hero-wrap {
+  position: relative;
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--deep-black);
+}
+
+.video-background-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-mask-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65); /* Typographic legibility overlay */
+  z-index: 2;
+}
+
+.hero-inner-content {
+  position: relative;
+  z-index: 3;
+  color: var(--white);
+}
+
+.hero-main-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: var(--white);
+  max-width: 900px;
+  margin: 1rem 0;
+}
+
+/* --- Standardized Responsive Grids --- */
+.auto-fit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  margin: 3rem 0;
+}
+
+/* --- Sectioning & Contrast --- */
+.section {
+  padding: 6rem 0;
+}
+
+.section-charcoal {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+.McGill-white { color: var(--white) !important; }
+.McGill-white-dim { color: rgba(255, 255, 255, 0.75) !important; }
+.McGill-white-accent { color: var(--white); border-bottom: 2px solid var(--mcgill-red); display: inline-block; padding-bottom: 5px; }
+.McGill-red-text { color: var(--mcgill-red) !important; }
+.McGill-red-border { border-bottom: 2px solid var(--mcgill-red); padding-bottom: 0.5rem; margin-bottom: 2rem; }
+
+/* Academic UI Elements */
+.academic-title { font-size: 3rem; margin-bottom: 1.5rem; color: var(--white); }
+.academic-profile { text-align: center; border: 1px solid var(--grey-800); padding: 2rem; transition: 0.3s ease; background: var(--charcoal); }
+.academic-profile:hover { border-color: var(--mcgill-red); transform: translateY(-5px); }
+
+.role-heading { color: var(--white); text-transform: uppercase; letter-spacing: 1px; font-size: 1.5rem; margin-top: 4rem; }
+
+.member-thumb { width: 180px; height: 180px; border-radius: 50%; margin: 0 auto 1.5rem; overflow: hidden; background: var(--grey-800); border: 2px solid var(--grey-200); }
+.member-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb-placeholder { font-size: 3rem; display: flex; align-items: center; justify-content: center; height: 100%; color: var(--white); font-weight: 800; background: var(--grey-800); }
+
+.member-name { color: var(--white); margin: 1rem 0 0.5rem; }
+.member-role-tag { text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; color: var(--grey-200); font-weight: 700; margin-bottom: 1rem; }
+.member-bio-short { font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--grey-200); }
+
+/* --- Publications Styling --- */
+.publication-year {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--mcgill-red);
+  padding-bottom: 0.5rem;
+  margin: 4rem 0 2rem;
+  color: var(--white);
+}
+
+.publication-item {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--grey-800);
+}
+
+.publication-title a {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.4;
+}
+
+.publication-title a:hover {
   color: var(--mcgill-red);
 }
 
-/* ==========================================================================
-   Team Layout
-   ========================================================================== */
-.team-member {
-  text-align: center;
-}
-
-.team-member img {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin: 0 auto var(--spacing-md);
-  border: 4px solid var(--grey-light);
-  transition: border-color var(--transition-speed) ease;
-}
-
-.team-member:hover img {
-  border-color: var(--mcgill-red);
-}
-
-.team-role {
-  color: var(--text-muted);
-  font-weight: 600;
-  margin-bottom: var(--spacing-sm);
-}
-
-/* ==========================================================================
-   Publications Layout
-   ========================================================================== */
-.publication-item {
-  background: var(--white);
-  padding: var(--spacing-lg);
-  border-left: 4px solid var(--mcgill-red);
-  margin-bottom: var(--spacing-md);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.publication-title {
-  font-size: 1.25rem;
-  margin-bottom: var(--spacing-sm);
-}
-
 .publication-authors {
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-sm);
+  margin: 0.5rem 0;
+  color: var(--grey-200);
+  font-size: 1rem;
 }
 
-.publication-authors .highlight-author {
-  font-weight: bold;
-  color: var(--charcoal);
+.lab-pi-highlight {
+  color: var(--mcgill-red);
+  font-weight: 700;
 }
 
 .publication-meta {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--grey-200);
   display: flex;
-  gap: var(--spacing-md);
-  align-items: center;
+  gap: 1.5rem;
   flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .publication-journal {
-  font-weight: 600;
-}
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-.site-footer {
-  background-color: var(--charcoal);
+  font-weight: 700;
+  font-style: italic;
   color: var(--white);
-  padding: var(--spacing-xl) 0 var(--spacing-md);
-  margin-top: var(--spacing-xxl);
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-xl);
+.publication-abstract {
+  margin-top: 1.5rem;
+  background: var(--grey-900);
+  padding: 1.5rem;
+  border-radius: 4px;
 }
 
-.footer-widget h3 {
+.publication-abstract summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--mcgill-red);
+  user-select: none;
+}
+
+.publication-abstract p {
+  margin-top: 1rem;
+  font-size: 0.95rem;
   color: var(--white);
-  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+
+/* Sidebar & Meta Boxes */
+.technical-meta-box {
+  background: var(--charcoal);
+  padding: 2.5rem;
+  border: 1px solid var(--grey-800);
+  border-top: 4px solid var(--mcgill-red);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.meta-box-title {
   font-size: 1.25rem;
-  border-bottom: 2px solid var(--mcgill-red);
-  padding-bottom: var(--spacing-sm);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+  border-bottom: 1px solid var(--grey-800);
+  padding-bottom: 1rem;
+}
+
+.meta-list { list-style: none; padding: 0; margin: 0 0 2.5rem 0; }
+.meta-list li { margin-bottom: 1rem; font-size: 1rem; color: var(--grey-200); line-height: 1.4; }
+.meta-list li strong { color: var(--white); display: inline-block; width: 100px; }
+.doi-string { font-family: monospace; word-break: break-all; opacity: 0.8; }
+
+/* Buttons */
+.btn { display: inline-block; padding: 1rem 2.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border: none; border-radius: var(--border-radius); text-align: center; }
+.btn-primary { background: var(--mcgill-red); color: var(--white); }
+.btn-outline-white { border: 2px solid var(--white); color: var(--white); background: transparent; }
+.btn-outline-white:hover { background: var(--white); color: var(--charcoal); }
+.btn-block { display: block; width: 100%; text-align: center; }
+
+/* Layout Grid Extensions */
+.split-feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+@media (max-width: 900px) { .split-feature-grid { grid-template-columns: 1fr; } .hero-main-title { font-size: 2.5rem; } }
+
+/* Footer */
+.branding-footer { background: var(--charcoal); color: var(--white); padding: 6rem 0 2rem; }
+
+.footer-logos {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+.footer-content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem; margin-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3rem; }
+
+/* Footer navigation list styling */
+.footer-menu-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 2rem;
+}
+.footer-legal { font-size: 0.85rem; opacity: 0.7; }
+.legal-flex { display: flex; justify-content: space-between; }
+
+/* --- Content Utility --- */
+.content-narrow { max-width: 800px; margin: 0 auto; }
+.entry-content { color: var(--white); line-height: 1.8; }
+.entry-content p { margin-bottom: 1.5rem; }
+
+/* --- Careers --- */
+.career-card { background: var(--grey-900); padding: 2rem; border-left: 4px solid var(--mcgill-red); margin-bottom: 2rem; }
+.career-card h3 { color: var(--white); margin-bottom: 0.5rem; }
+.career-meta { font-size: 0.85rem; color: var(--grey-200); margin-bottom: 1rem; text-transform: uppercase; }
+.career-description { color: var(--white); margin-bottom: 1.5rem; }
+
+/* --- Research Archive & Technical Components --- */
+.high-contrast-technical-hero {
+  background: var(--deep-black);
+  border-bottom: 1px solid var(--mcgill-red);
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-technical-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text-block {
+  position: relative;
+  z-index: 10;
+}
+
+.academic-description {
+  font-size: 1.25rem;
+  color: var(--grey-200);
+  max-width: 700px;
+  margin-top: 2rem;
+}
+
+.hero-decorative-accent {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(237, 27, 47, 0.15) 0%, transparent 70%);
+  z-index: 1;
+}
+
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--mcgill-red);
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  box-shadow: 0 0 15px var(--mcgill-red);
+}
+
+.section-technical-map {
+  background: var(--charcoal);
+  padding: 4rem 0;
+}
+
+.map-inner-wrap {
+  background: var(--deep-black);
+  padding: 4rem;
+  border-left: 8px solid var(--mcgill-red);
+}
+
+.high-contrast-border {
+  border: 1px solid var(--grey-800);
+}
+
+.workflow-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.workflow-step {
+  border-top: 1px solid var(--grey-800);
+  padding-top: 2rem;
+}
+
+.step-counter {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--mcgill-red);
+  font-weight: 800;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.research-theme-card-v2 {
+  background: var(--charcoal);
+  border: 1px solid var(--grey-800);
+  transition: 0.3s ease;
+}
+
+.research-theme-card-v2:hover {
+  border-color: var(--mcgill-red);
+}
+
+.card-media {
+  height: 240px;
+  background: var(--grey-900);
+  overflow: hidden;
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pattern-placeholder {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(45deg, #111, #111 10px, #151515 10px, #151515 20px);
+}
+
+.card-content-wrap {
+  padding: 2rem;
+}
+
+.theme-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.theme-excerpt-legible {
+  color: var(--grey-200);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-text-link {
+  color: var(--mcgill-red);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* --- Publication Single --- */
+.publication-single-wrap {
+  background: var(--deep-black);
+}
+
+.publication-main-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--white);
+  line-height: 1.2;
+  margin: 1.5rem 0;
+}
+
+.publication-author-string {
+  font-size: 1.15rem;
+  color: var(--grey-200);
+  line-height: 1.6;
+}
+
+.abstract-text-legible {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--white);
+}
+
+.publication-sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.meta-actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.meta-actions .btn {
   display: inline-block;
+  width: auto;
+  min-width: 200px;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  background: var(--mcgill-red);
+  color: var(--white);
+  border: none;
+  transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
-.footer-widget p, .footer-widget a {
-  color: var(--grey-light);
+.meta-actions .btn:hover {
+  background: var(--white);
+  color: var(--mcgill-red);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(237, 27, 47, 0.4);
 }
 
-.footer-widget a:hover {
+/* --- Contact Page --- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+
+.contact-card {
+  background: var(--charcoal);
+  padding: 4rem;
+  border-top: 4px solid var(--mcgill-red);
+}
+
+.location-panel {
+  padding: 2rem 0;
+}
+
+.map-panel {
+  width: 100%;
+  height: 400px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border: 1px solid var(--grey-800);
+  position: relative;
+  background-image: radial-gradient(#222 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.map-panel::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--mcgill-red);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px rgba(237, 27, 47, 0.2), 0 0 20px var(--mcgill-red);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(237, 27, 47, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(237, 27, 47, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(237, 27, 47, 0); }
+}
+
+@media (max-width: 1024px) {
+  .hero-technical-grid, .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .workflow-grid-v2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- Homepage Specifics --- */
+.hero-block {
+  padding: 0;
+}
+
+.hero-typography {
+  max-width: 800px;
+}
+
+.hero-tagline {
+  font-size: 1.5rem;
+  color: var(--grey-200);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.section-pi-feature {
+  background: var(--deep-black);
+}
+
+.feature-media {
+  position: relative;
+}
+
+.profile-img-large {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--grey-800);
+  filter: grayscale(100%);
+  transition: 0.5s ease;
+}
+
+.profile-img-large:hover {
+  filter: grayscale(0%);
+}
+
+.branding-title {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  color: var(--white);
+}
+
+.pi-bio-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--grey-200);
+  margin-bottom: 2rem;
+}
+
+.text-link-arrow {
+  color: var(--mcgill-red);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section-team-preview {
+  background: var(--charcoal);
+}
+
+.section-header.centered {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--white);
+}
+
+.centered-cta-box {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.btn-secondary {
+  background: var(--grey-800);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--mcgill-red);
+}
+
+/* --- Team Page UI --- */
+.team-group-wrap {
+  margin-bottom: 6rem;
+}
+
+.member-links {
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.icon-link {
+  font-size: 1.25rem;
   color: var(--mcgill-red);
 }
 
-.site-info {
-  text-align: center;
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--charcoal-light);
-  color: var(--text-muted);
-  font-size: 0.9rem;
+.text-link-sm {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-/* ==========================================================================
-   Admin Utilities
-   ========================================================================== */
-.shmuel-sync-notice {
-  padding: 15px;
-  background: #fff;
-  border-left: 4px solid #46b450;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-  margin: 5px 15px 2px;
+.icon-link:hover, .text-link-sm:hover {
+  color: var(--white);
 }
+
+/* --- Common UI Utilities --- */
+.centered { text-align: center; }
+.section-subtitle { font-size: 1.75rem; color: var(--white); margin-bottom: 1.5rem; }
+.btn-sm { padding: 0.5rem 1.5rem; font-size: 0.85rem; }
+.text-link { color: var(--mcgill-red); font-weight: 700; text-decoration: underline; }
+.text-link:hover { color: var(--white); }
+
+

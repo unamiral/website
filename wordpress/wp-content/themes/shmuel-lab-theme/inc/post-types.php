@@ -113,5 +113,39 @@ function shmuel_lab_register_cpts() {
         'show_in_rest'       => true,
     );
     register_post_type( 'publication', $pub_args );
+    // 4. CPT: Careers (Positions)
+    $career_labels = array(
+        'name'               => _x( 'Positions', 'post type general name', 'shmuel-lab' ),
+        'singular_name'      => _x( 'Position', 'post type singular name', 'shmuel-lab' ),
+        'menu_name'          => _x( 'Careers', 'admin menu', 'shmuel-lab' ),
+        'name_admin_bar'     => _x( 'Position', 'add new on admin bar', 'shmuel-lab' ),
+        'add_new'            => _x( 'Add New', 'position', 'shmuel-lab' ),
+        'add_new_item'       => __( 'Add New Position', 'shmuel-lab' ),
+        'new_item'           => __( 'New Position', 'shmuel-lab' ),
+        'edit_item'          => __( 'Edit Position', 'shmuel-lab' ),
+        'view_item'          => __( 'View Position', 'shmuel-lab' ),
+        'all_items'          => __( 'All Positions', 'shmuel-lab' ),
+        'search_items'       => __( 'Search Positions', 'shmuel-lab' ),
+        'not_found'          => __( 'No positions found.', 'shmuel-lab' ),
+        'not_found_in_trash' => __( 'No positions found in Trash.', 'shmuel-lab' )
+    );
+
+    $career_args = array(
+        'labels'             => $career_labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'careers' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 8,
+        'menu_icon'          => 'dashicons-businessman',
+        'supports'           => array( 'title', 'editor', 'excerpt' ),
+        'show_in_rest'       => true,
+    );
+    register_post_type( 'career', $career_args );
 }
 add_action( 'init', 'shmuel_lab_register_cpts' );

@@ -28,10 +28,28 @@ if ( function_exists('acf_add_local_field_group') ) {
             ),
             array(
                 'key' => 'field_hero_bg_image',
-                'label' => 'Hero Background Image',
+                'label' => 'Hero Background Image (Fallback)',
                 'name' => 'hero_bg_image',
                 'type' => 'image',
                 'return_format' => 'url',
+                'instructions' => 'Static image fallback if video is not used or fails to load.',
+            ),
+            array(
+                'key' => 'field_hero_video',
+                'label' => 'Hero Background Video',
+                'name' => 'hero_video',
+                'type' => 'file',
+                'return_format' => 'url',
+                'mime_types' => 'webm,mp4',
+                'instructions' => 'Upload a WebM or MP4 video for the hero background. Recommended: WebM format for best compression.',
+            ),
+            array(
+                'key' => 'field_hero_video_poster',
+                'label' => 'Hero Video Poster Image',
+                'name' => 'hero_video_poster',
+                'type' => 'image',
+                'return_format' => 'url',
+                'instructions' => 'Poster image displayed while video loads or on devices that don\'t support autoplay.',
             ),
             array(
                 'key' => 'field_about_lab',
@@ -65,11 +83,33 @@ if ( function_exists('acf_add_local_field_group') ) {
                 'type' => 'select',
                 'choices' => array(
                     'Principal Investigator' => 'Principal Investigator',
+                    'Collaborating Faculty' => 'Collaborating Faculty',
                     'Postdoctoral Fellow' => 'Postdoctoral Fellow',
                     'PhD Candidate' => 'PhD Candidate',
+                    'Research Assistant' => 'Research Assistant',
                     'Master Student' => 'Master Student',
                     'Alumni' => 'Alumni'
                 ),
+            ),
+            array(
+                'key' => 'field_member_photo_url',
+                'label' => 'Photo URL',
+                'name' => 'member_photo_url',
+                'type' => 'url',
+                'instructions' => 'Optional external or theme-hosted profile image URL.',
+            ),
+            array(
+                'key' => 'field_member_profile_url',
+                'label' => 'Profile URL',
+                'name' => 'member_profile_url',
+                'type' => 'url',
+            ),
+            array(
+                'key' => 'field_member_initials',
+                'label' => 'Initials',
+                'name' => 'member_initials',
+                'type' => 'text',
+                'instructions' => 'Used when no profile photo is available.',
             ),
             array(
                 'key' => 'field_member_email',
@@ -84,7 +124,15 @@ if ( function_exists('acf_add_local_field_group') ) {
                 'type' => 'url',
             ),
             array(
+                'key' => 'field_member_orcid',
+                'label' => 'ORCID iD',
+                'name' => 'member_orcid',
+                'type' => 'text',
+                'placeholder' => '0000-0000-0000-0000',
+            ),
+            array(
                 'key' => 'field_member_bio',
+
                 'label' => 'Biography',
                 'name' => 'member_bio',
                 'type' => 'textarea',
